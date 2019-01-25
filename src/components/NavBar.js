@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import Home from '@material-ui/icons/Home';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import {withRouter} from "react-router-dom";
@@ -32,17 +32,30 @@ class NavBar extends React.Component {
         this.setState({ value });
     };
 
-    navigateToPage1 = () =>{
+    navigateToLocation = () =>{
         this.props.history.push({
-            pathname: '/page',
+            pathname: '/location',
         });
-        console.log("changed")
+        console.log("Location")
     }
+
     navigateHome = () =>{
         this.props.history.push({
             pathname: '/',
         });
-        console.log("changed")
+        console.log("home")
+    }
+    navigateProfile = () =>{
+        this.props.history.push({
+            pathname: '/profile',
+        });
+        console.log("profile")
+    }
+    navigateRecents = () =>{
+        this.props.history.push({
+            pathname: '/recentAlerts',
+        });
+        console.log("recentAlerts")
     }
     render() {
         const { classes } = this.props;
@@ -55,10 +68,10 @@ class NavBar extends React.Component {
                 showLabels
                 className={classes.stickToBottom}
             >
-                <BottomNavigationAction onClick={this.navigateToPage1} label="Recents" icon={<RestoreIcon />} />
-                <BottomNavigationAction onClick={this.navigateHome}  label="Recents" icon={<Home />} />
-                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+                <BottomNavigationAction onClick={this.navigateToLocation} label="Location" icon={<LocationOnIcon />} />
+                <BottomNavigationAction onClick={this.navigateRecents}  label="Alerts" icon={<RestoreIcon />} />
+                <BottomNavigationAction onClick={this.navigateHome}  label="Home" icon={<Home />} />
+                <BottomNavigationAction onClick={this.navigateProfile}  label="Profile" icon={<AccountCircle/>} />
             </BottomNavigation>
         );
     }

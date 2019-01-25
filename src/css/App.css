@@ -3,10 +3,18 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  width: 70%;
+  margin-top: 1rem;
 }
 
+.App-Title{
+  margin-top: 3rem;
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.App-Title-colour{
+  color:#3f51b5;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -22,10 +30,37 @@
   color: #61dafb;
 }
 
-.Button-holder{
-  margin-top: 10%;
+/*.Button-holder{*/
+  /*margin-top: 30%;*/
+/*}*/
+
+.menu-button{
+  width: 70%;
+  padding:1rem !important;
+  margin: 1rem !important;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
+.paper-alert-holder{
+  margin-top: 20%;
+}
+
+.list-scrollable {
+  width: 100%;
+  maxWidth: 360;
+}
+
+.inline  {
+  display: inline;
+}
+
+.family-image{
+    width: 90%;
+}
+
+.card{
+    maxWidth: 345;
+}
 
 @keyframes App-logo-spin {
   from {
