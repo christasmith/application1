@@ -22,6 +22,11 @@
   color: #61dafb;
 }
 
+.Button-holder{
+  margin-top: 10%;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
