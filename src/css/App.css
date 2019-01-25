@@ -55,11 +55,12 @@
 }
 
 .family-image{
-    width: 90%;
+    width:100%;
 }
 
-.card{
-    maxWidth: 345;
+.review{
+  text-align: right;
+  padding: 1rem;
 }
 
 @keyframes App-logo-spin {

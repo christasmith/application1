@@ -22,7 +22,6 @@ export class GoogleMap extends Component{
                 <Marker onClick={this.onMarkerClick}
                         name={'Current location'}
                         position={{lat: 51.2362, lng: -0.631027}}/>
-
                 <InfoWindow marker={this.state.activeMarker}  visible={this.state.showingInfoWindow}>
                     <div>
                         <p>{"Home"}</p>

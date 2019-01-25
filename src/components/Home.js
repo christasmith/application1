@@ -32,9 +32,9 @@ class Home extends Component {
                 {/*<h1 className='App-Title'> Care<span className='App-Title-colour'>Fall </span> </h1>*/}
                 <img className='App-logo' src={logo}/>
                 <img className='family-image' src={family}/>
-                <Typography component="p">
-
-                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica</Typography>
+                <Typography className='review' component="p">
+                    "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctic" - Jenny Smith
+                    </Typography>
             </div>
                 );
     }
