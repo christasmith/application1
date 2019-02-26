@@ -41,13 +41,10 @@
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-.paper-alert-holder{
-  margin-top: 20%;
-}
+
 
 .list-scrollable {
   width: 100%;
-  maxWidth: 360;
 }
 
 .inline  {
@@ -70,4 +67,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.display-alert{
+  display: none;
+}
+
+
+
+.desktop-nav{
+  list-style: none;
+  display: flex;
+}
+
+.desktop-nav-item{
+  margin-right: 5rem;
 }

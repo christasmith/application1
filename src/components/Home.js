@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
 import '../css/App.css';
-import Button from "@material-ui/core/Button/Button";
 import logo from '../logo.png'
 import family from '../oldp.jpg'
 import {withRouter} from "react-router-dom";
-import CardActionArea from "@material-ui/core/CardActionArea/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia/CardMedia";
-import CardContent from "@material-ui/core/CardContent/CardContent";
 import Typography from "@material-ui/core/Typography/Typography";
-import Card from "@material-ui/core/Card/Card";
-
+import Hidden from "@material-ui/core/Hidden/Hidden";
 
 class Home extends Component {
 
@@ -29,14 +24,18 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-                {/*<h1 className='App-Title'> Care<span className='App-Title-colour'>Fall </span> </h1>*/}
+                <Hidden smDown>
+                    <h1 className='App-Title'> Welcome to <span className='App-Title-colour'> CareFall</span> </h1>
+                </Hidden>
+                <Hidden mdUp>
                 <img className='App-logo' src={logo}/>
                 <img className='family-image' src={family}/>
-                <Typography className='review' component="p">
-                    "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctic" - Jenny Smith
+                <Typography className='review'>
+                    "Since using CareFall it has made my family feel more confident in leaving me by myself. I love it and simply wouldn't recommend it enough " - Jenny Smith
                     </Typography>
+                </Hidden>
             </div>
-                );
+        );
     }
 }
 

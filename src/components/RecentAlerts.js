@@ -8,11 +8,10 @@ import Avatar from "@material-ui/core/Avatar/Avatar";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import Typography from "@material-ui/core/Typography/Typography";
 import Delete from '@material-ui/icons/Delete';
-import {getRecents} from "../utils/apiReq";
+import {deleteAlert, getRecents} from "../utils/apiReq";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 import Chip from "@material-ui/core/Chip/Chip";
 import Error from '@material-ui/icons/Error';
-import care from '../care.png'
 
 
 class RecentAlerts extends Component {
@@ -26,13 +25,17 @@ class RecentAlerts extends Component {
     }
 
     componentDidMount(){
-        this.mounted = true;
         this.callbackend()
     }
 
-    handleDismiss = () => {
-        console.log("hadlei")
+    handleDismiss = (id) => {
+        deleteAlert(id).then(function() {
+                console.log("ok");
+            }).catch(function() {
+                console.log("error");
+            });
     }
+
 
     callbackend = () => {
         getRecents().then(response => {
@@ -48,8 +51,7 @@ class RecentAlerts extends Component {
 
         return (
             <div className="Page">
-                <h1 className='App-Title'> Recent<span className='App-Title-colour'> Fall</span> Alerts</h1>
-                {/*<img className='App-logo' src={care}/>*/}
+                <h1 className='App-Title'> Daily<span className='App-Title-colour'> Fall</span> Alerts</h1>
 
                 {!this.state.hasAlerts && <CircularProgress className='progress' />}
 
@@ -63,22 +65,22 @@ class RecentAlerts extends Component {
                                 <ListItemAvatar>
                                     <Avatar> <Error> </Error></Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary="Fall Alert"
+                                <ListItemText key={alert.id} primary="Fall Alert"
                                               secondary={
                                                   <React.Fragment>
                                                       <Typography component="span" className='inline' color="textPrimary">
-                                                      </Typography>{'Date/time :'+ alert.timestamp}
+                                                      </Typography>{'Date/time : '+ alert.timeStamp}
                                                       <Typography component="span" className='inline' color="textPrimary">
-                                                      </Typography>{'Location :'+ alert.location}
-
+                                                      </Typography>{'Location : '+ alert.location}
+                                                      <Typography component="span" className='inline' color="textPrimary">
+                                                      </Typography>{'Fall detected in room : N/A '}
                                                   </React.Fragment>
                                               }
                                 />
                                 <Chip
-                                    key='0'
                                     icon={Delete}
                                     label='Dismiss'
-                                    onDelete={this.handleDismiss}
+                                    onDelete={() => this.handleDismiss(alert.id)}
                                 />
                             </ListItem>
                         )}

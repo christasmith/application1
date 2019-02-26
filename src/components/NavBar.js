@@ -6,8 +6,8 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Home from '@material-ui/icons/Home';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import {withRouter} from "react-router-dom";
+import Hidden from "@material-ui/core/Hidden/Hidden";
 
 
 const styles = {
@@ -20,10 +20,6 @@ const styles = {
 
 class NavBar extends React.Component {
 
-    constructor (props){
-        super(props)
-    }
-
     state = {
         value: 0,
     };
@@ -31,13 +27,6 @@ class NavBar extends React.Component {
     handleChange = (event, value) => {
         this.setState({ value });
     };
-
-    navigateToLocation = () =>{
-        this.props.history.push({
-            pathname: '/location',
-        });
-        console.log("Location")
-    }
 
     navigateHome = () =>{
         this.props.history.push({
@@ -62,17 +51,20 @@ class NavBar extends React.Component {
         const { value } = this.state;
 
         return (
+            <Hidden mdUp>
             <BottomNavigation
                 value={value}
                 onChange={this.handleChange}
                 showLabels
                 className={classes.stickToBottom}
+
             >
-                <BottomNavigationAction onClick={this.navigateToLocation} label="Location" icon={<LocationOnIcon />} />
                 <BottomNavigationAction onClick={this.navigateRecents}  label="Alerts" icon={<RestoreIcon />} />
                 <BottomNavigationAction onClick={this.navigateHome}  label="Home" icon={<Home />} />
-                <BottomNavigationAction onClick={this.navigateProfile}  label="Profile" icon={<AccountCircle/>} />
+                <BottomNavigationAction onClick={this.navigateProfile}  label="People" icon={<AccountCircle/>} />
             </BottomNavigation>
+            </Hidden>
+
         );
     }
 }
