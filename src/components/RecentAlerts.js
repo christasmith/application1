@@ -8,6 +8,7 @@ import Avatar from "@material-ui/core/Avatar/Avatar";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import Typography from "@material-ui/core/Typography/Typography";
 import Delete from '@material-ui/icons/Delete';
+import AccessAlarm from '@material-ui/icons/AccessAlarm';
 import {deleteAlert, getRecents} from "../utils/apiReq";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 import Chip from "@material-ui/core/Chip/Chip";
@@ -41,14 +42,37 @@ class RecentAlerts extends Component {
         getRecents().then(response => {
             this.setState({
                 hasAlerts:true,
-                alertList: response,
+                alertList: response.reverse(),
             });
         })
     }
 
+     renderDismissConfirm = (id) => {
+        let alerts = this.state.alertList
+        let index =  alerts.length
+         if(id === index){
+             return (
+                 <div className='button-block'>
+                     <Chip
+                         className='toggle-button'
+                         icon={Delete}
+                         label='Dismiss'
+                         onClick={() => this.handleDismiss(alert.id)}
+                         onDelete={() => this.handleDismiss(alert.id)}
+                     />
+                     <Chip
+                         color='primary'
+                         className='toggle-button'
+                         label='Confirm Fall'
+                     />
+                 </div>
+             );
+         }
+
+    }
+
     render() {
         let recents = this.state.alertList
-
         return (
             <div className="Page">
                 <h1 className='App-Title'> Daily<span className='App-Title-colour'> Fall</span> Alerts</h1>
@@ -61,12 +85,13 @@ class RecentAlerts extends Component {
                 <Paper className='paper-alert-holder'>
                     <List className='list-scrollable'>
                         {recents.map((alert) =>
-                            <ListItem alignItems="flex-start">
-                                <ListItemAvatar>
-                                    <Avatar> <Error> </Error></Avatar>
+                            <ListItem alignItems="flex-start" key={alert.id}>
+                                <ListItemAvatar >
+                                    <Avatar className={'alert-avatar-'+ alert.alertStage}>
+                                        <Error> </Error>
+                                    </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText key={alert.id} primary="Fall Alert"
-                                              secondary={
+                                <ListItemText key={alert.id} primary="Fall Alert" secondary={
                                                   <React.Fragment>
                                                       <Typography component="span" className='inline' color="textPrimary">
                                                       </Typography>{'Date/time : '+ alert.timeStamp}
@@ -77,11 +102,7 @@ class RecentAlerts extends Component {
                                                   </React.Fragment>
                                               }
                                 />
-                                <Chip
-                                    icon={Delete}
-                                    label='Dismiss'
-                                    onDelete={() => this.handleDismiss(alert.id)}
-                                />
+                                {this.renderDismissConfirm(alert.alertStage)}
                             </ListItem>
                         )}
                     </List>

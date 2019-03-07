@@ -14,3 +14,10 @@ export function deleteAlert(id) {
         method: 'DELETE'
     });
 }
+
+export function getPatients() {
+    return request({
+        url: 'http://localhost:8080/patients',
+        method: 'GET'
+    });
+}

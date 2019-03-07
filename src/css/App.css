@@ -84,3 +84,28 @@
 .desktop-nav-item{
   margin-right: 5rem;
 }
+
+.button-block{
+  display: inline-block;
+  text-align: right;
+}
+.toggle-button{
+  margin-bottom: 1rem!important;
+ }
+
+.add-patient{
+  position: absolute;
+  bottom: 10rem;
+}
+
+.alert-avatar-3{
+  background-color:red !important;
+}
+
+.alert-avatar-1{
+  background-color:green !important;
+}
+
+.alert-avatar-2{
+  background-color:orange !important;
+}

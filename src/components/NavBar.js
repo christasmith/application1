@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
+import Timeline from '@material-ui/icons/Timeline';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Home from '@material-ui/icons/Home';
 import {withRouter} from "react-router-dom";
@@ -34,17 +35,26 @@ class NavBar extends React.Component {
         });
         console.log("home")
     }
+
     navigateProfile = () =>{
         this.props.history.push({
             pathname: '/profile',
         });
         console.log("profile")
     }
+
     navigateRecents = () =>{
         this.props.history.push({
             pathname: '/recentAlerts',
         });
         console.log("recentAlerts")
+    }
+
+    navigateHistory = () =>{
+        this.props.history.push({
+            pathname: '/history',
+        });
+        console.log("history")
     }
     render() {
         const { classes } = this.props;
@@ -62,6 +72,7 @@ class NavBar extends React.Component {
                 <BottomNavigationAction onClick={this.navigateRecents}  label="Alerts" icon={<RestoreIcon />} />
                 <BottomNavigationAction onClick={this.navigateHome}  label="Home" icon={<Home />} />
                 <BottomNavigationAction onClick={this.navigateProfile}  label="People" icon={<AccountCircle/>} />
+                <BottomNavigationAction onClick={this.navigateHistory}  label="History" icon={<Timeline/>} />
             </BottomNavigation>
             </Hidden>
 
