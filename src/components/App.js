@@ -11,6 +11,7 @@ import AppBar from "@material-ui/core/AppBar/AppBar";
 import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import Typography from "@material-ui/core/Typography/Typography";
 import Hidden from "@material-ui/core/Hidden/Hidden";
+import Confirmed from "./Confirmed";
 
 
 class App extends Component {
@@ -68,6 +69,7 @@ class App extends Component {
               <Route exact path="/" component={Home}/>
               <Route exact path="/profile" component={Profile}/>
               <Route exact path="/history" component={History}/>
+              <Route exact path="/conf" component={Confirmed}/>
           </Switch>
           <NavBar/>
       </div>

@@ -69,10 +69,10 @@ class NavBar extends React.Component {
                 className={classes.stickToBottom}
 
             >
-                <BottomNavigationAction onClick={this.navigateRecents}  label="Alerts" icon={<RestoreIcon />} />
                 <BottomNavigationAction onClick={this.navigateHome}  label="Home" icon={<Home />} />
-                <BottomNavigationAction onClick={this.navigateProfile}  label="People" icon={<AccountCircle/>} />
+                <BottomNavigationAction onClick={this.navigateRecents}  label="Alerts" icon={<RestoreIcon />} />
                 <BottomNavigationAction onClick={this.navigateHistory}  label="History" icon={<Timeline/>} />
+                <BottomNavigationAction onClick={this.navigateProfile}  label="People" icon={<AccountCircle/>} />
             </BottomNavigation>
             </Hidden>
 

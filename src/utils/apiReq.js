@@ -8,10 +8,17 @@ export function getRecents() {
     });
 }
 
-export function deleteAlert(id) {
+export function deleteAlerts() {
     return request({
-        url: 'http://localhost:8080/deleteAlert?id='+ id,
-        method: 'DELETE'
+        url: 'http://localhost:8080/deleteAlerts',
+        method: 'GET'
+    });
+}
+
+export function confirmAlerts(id) {
+    return request({
+        url: 'http://localhost:8080/confirmAlerts?id='+id,
+        method: 'PUT'
     });
 }
 
@@ -20,4 +27,11 @@ export function getPatients() {
         url: 'http://localhost:8080/patients',
         method: 'GET'
     });
+}
+
+export function getHistory() {
+        return request({
+            url: 'http://localhost:8080/history',
+            method: 'GET'
+     });
 }

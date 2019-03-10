@@ -8,11 +8,11 @@ import Avatar from "@material-ui/core/Avatar/Avatar";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import Typography from "@material-ui/core/Typography/Typography";
 import Delete from '@material-ui/icons/Delete';
-import AccessAlarm from '@material-ui/icons/AccessAlarm';
-import {deleteAlert, getRecents} from "../utils/apiReq";
+import {deleteAlerts, getRecents, confirmAlerts} from "../utils/apiReq";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 import Chip from "@material-ui/core/Chip/Chip";
 import Error from '@material-ui/icons/Error';
+import Confirmed from "./Confirmed";
 
 
 class RecentAlerts extends Component {
@@ -22,6 +22,8 @@ class RecentAlerts extends Component {
         this.state = {
             alertList: null,
             hasAlerts: false,
+            hasConfirmed:false,
+            confirmedAlert:null,
         }
     }
 
@@ -29,14 +31,28 @@ class RecentAlerts extends Component {
         this.callbackend()
     }
 
-    handleDismiss = (id) => {
-        deleteAlert(id).then(function() {
-                console.log("ok");
-            }).catch(function() {
-                console.log("error");
-            });
+    handleDismiss = () => {
+        // console.log('IN METHOD')
+        deleteAlerts().then(function() {
+            console.log("ok");
+        }).catch(function() {
+            console.log("error");
+        });
     }
 
+    handleConfirm = (alert) => {
+        console.log('CONFIRMING')
+        confirmAlerts(alert.id).then(function() {
+            console.log("ok");
+        }).catch(function() {
+            console.log("error");
+        });
+        this.setState({
+            hasConfirmed:true,
+            confirmedAlert: alert,
+            alertList:[],
+        })
+    }
 
     callbackend = () => {
         getRecents().then(response => {
@@ -47,23 +63,24 @@ class RecentAlerts extends Component {
         })
     }
 
-     renderDismissConfirm = (id) => {
+     renderDismissConfirm = (alert) => {
         let alerts = this.state.alertList
         let index =  alerts.length
-         if(id === index){
+         if(alert.alertStage === index){
              return (
                  <div className='button-block'>
                      <Chip
                          className='toggle-button'
                          icon={Delete}
                          label='Dismiss'
-                         onClick={() => this.handleDismiss(alert.id)}
-                         onDelete={() => this.handleDismiss(alert.id)}
+                         onClick={this.handleDismiss}
+                         onDelete={this.handleDismiss}
                      />
                      <Chip
                          color='primary'
                          className='toggle-button'
                          label='Confirm Fall'
+                         onClick={() => this.handleConfirm(alert)}
                      />
                  </div>
              );
@@ -73,13 +90,17 @@ class RecentAlerts extends Component {
 
     render() {
         let recents = this.state.alertList
+
+        if(this.state.hasConfirmed){
+            return <Confirmed alert={this.state.confirmedAlert}/>
+        }
         return (
-            <div className="Page">
-                <h1 className='App-Title'> Daily<span className='App-Title-colour'> Fall</span> Alerts</h1>
+            <div>
+                <h1 className='App-Title'> Recent<span className='App-Title-colour'> Fall</span> Alerts</h1>
 
                 {!this.state.hasAlerts && <CircularProgress className='progress' />}
 
-                {!this.state.hasAlerts.size === 0 && <h1> No alerts</h1>}
+                {this.state.hasAlerts === true && this.state.alertList.length === 0 && <span className='App-Title'> NO ALERTS </span>}
 
                 {this.state.hasAlerts &&
                 <Paper className='paper-alert-holder'>
@@ -102,12 +123,11 @@ class RecentAlerts extends Component {
                                                   </React.Fragment>
                                               }
                                 />
-                                {this.renderDismissConfirm(alert.alertStage)}
+                                {this.renderDismissConfirm(alert)}
                             </ListItem>
                         )}
                     </List>
-                </Paper>
-                }
+                </Paper>}
             </div>
         );
     }

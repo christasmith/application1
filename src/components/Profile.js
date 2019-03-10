@@ -6,7 +6,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import ListItem from "@material-ui/core/ListItem/ListItem";
 import List from "@material-ui/core/List/List";
-import lady from "../ladyA.jpg"
+import lady from "../imgs/ladyA.jpg"
 import {getPatients} from "../utils/apiReq";
 
 const styles = {
@@ -49,7 +49,6 @@ class Profile extends Component {
             return (
                 <div>
                     <h1 className='App-Title'> People </h1>
-
                     <p> This page shows the list of users added to your system, which you are <span
                         className='App-Title-colour'> actively monitoring: </span></p>
                     {patients.map((patient) =>
